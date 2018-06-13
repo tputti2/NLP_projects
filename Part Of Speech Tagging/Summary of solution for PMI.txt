@@ -1,0 +1,13 @@
+Summary of solution for Part 2:
+
+I used the following functions in class PMI for solution of Part 2. Some of these functions are already given and some of them were written by me.
+1. '_init_' - In this function, firstly the corpus taken as input is converted to self.corpus so that it can be used in other functions in this class as well. Secondly, two dictionaries, 'sent_count' and 'word_pair_count_sent' are created. The former one has keys as words and the values of these keys denote the number of sentences in the corpus that this word(key) appears in.'word_pair_count_sent' is the second dictionary which stores all the word pairs that appear in the corpus as keys and stores the number of sentences each word pair(key) appears as a value for that key. 
+2. 'getPMI' - This method inputs 2 words and first runs the self.pair function so that (w1,w2) and (w2,w1) are treated as one and we can avoid calculating pmi for them twice. Next, it is made sure that each of these words and the word pair exist in the training data, following which, we calculate P(w1) and P(w2) and P(w1,w2). Now applying the formula for PMI = log(P(w1,w2)/P(w1)P(w2)), we calculate the pmi and return that value.
+3.getVocabulary - This function inputs the cut-off frequency(k) for the words one wants to include in their vocabulary. The function returns a list of all those words which appear in more than k sentences.
+4. 'getPairswithMaximumPMI' - This function first loops over all the possible word pairs in the list of words inputted and checks if the word pair exists in the training corpus and if it does then it calculates the pmi for each word pair. Heapq push function is used to push the item onto a heap. Negative of pmi is used because later when we pop(using heappop), the smallest value will be returned. Since we need the pairs with maximum pmi values, we can pop the values with minimum (-pmi) values. Hence, while appending at the end, we append -(-pmi) value which will return the positive pmi.The output of this function is in the form of (pmi,word1,word2).
+5. 'writePairsToFile' and 'pair' functions are given and were used as it is. 
+
+Finally, in the main function, all the above functions are implemented for k = 2,5,10,50,100 and 200.
+
+
+
